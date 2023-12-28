@@ -1,0 +1,15 @@
+{
+    "name": "joynal.a/boiler",
+    "autoload": {
+        "psr-4": {
+            "JoynalA\\Boiler\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Joynal Abedin",
+            "email": "joynal.a@razinsoft.com"
+        }
+    ],
+    "require": {}
+}

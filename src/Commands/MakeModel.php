@@ -29,7 +29,11 @@ class MakeModel extends Command
     public function handle(): void
     {
         // get all models or ask model name
-        $models = !empty($this->argument('models')) ? $this->argument('models') : $this->ask('Enter Model Name');
+        $models = match(empty($this->argument('models'))){
+            true => explode(' ', $this->ask('Enter Model/Models Name')),
+            default => $this->argument('models')
+        };
+        
         $migrate = $this->option('m');
         // confirmation message
         $this->info("==> I just need a confirmation on whether I will create the repository with the model.\nif you agree I just create the repository with model.");

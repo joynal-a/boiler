@@ -1,50 +1,62 @@
 # Laravel Boiler Template
+<p align="center">
+  <img src="https://img.shields.io/github/stars/joynal-a/boiler?style=for-the-badge" alt="Total Issues">
+  <img src="https://img.shields.io/github/issues/joynal-a/boiler?style=for-the-badge">
+  <img src="https://img.shields.io/github/license/joynal-a/boiler?style=for-the-badge" alt="License">
+  <!-- Add more badges with different icons if necessary -->
+</p>
 
-## Overview
-Laravel Boiler Template is a comprehensive starting point for Laravel applications, providing a pre-configured structure, authentication system, and common functionalities to jumpstart your projects.
+## 🚀 Overview
+Laravel Boiler Template is an elegant starting point for Laravel applications, meticulously crafted to provide a pre-configured structure, a sophisticated authentication system, and essential functionalities. Propel your projects forward with this carefully designed foundation.
 
-## Requirements
-- php ^8.1
+## 🌟 Requirements
+- **PHP** ^8.1
+- **Laravel** ^10
 
-## suggestion
-- Try to use a new Laravel project, but you may use an existing project.
+## ✨ Suggestion
+- It is highly recommended to initiate a new Laravel project to fully embrace the power of Laravel Boiler Template. However, integration into an existing project is also possible.
 
-## Features
-- **Repository Pattern:** The Repository Pattern is a design pattern commonly used in Laravel and other frameworks to abstract the data access layer from the rest of the application. It provides a clean and organized way to interact with databases and other data sources by encapsulating the logic for retrieving and storing data.
+## 🛠️ Features
+- **Repository Pattern:** Embrace the elegance of the Repository Pattern, a widely adopted design pattern in Laravel and other frameworks. This pattern abstracts the data access layer, offering a pristine and organized approach to interact with databases and various data sources.
 
-- **Authentication System:** Integrated Laravel authentication system with login, registration, and password reset functionalities **Web/API**
-- **API Ready:** Easily integrate and build APIs with the provided structure.
+- **Multi Model Creation:** Streamline your workflow with the ability to create multiple models in a single command. The enhanced `php artisan make:model` command empowers you to craft a single model or multiple models at once, complete with migration/migrations. The system graciously prompts you, allowing you to seamlessly choose whether to create a repository alongside each model.
 
-## How To Install
-You can install the package via Composer:
+- **Authentication System:** Seamlessly integrated Laravel authentication system with advanced features for web and API, including login, registration, and password reset functionalities.
 
-```
+- **API Ready:** Unleash the potential of easy API integration and development using the meticulously crafted structure provided.
+
+## 📦 How To Install
+Install this package effortlessly using Composer:
+
+```bash
 composer require joynal.a/boiler
 ```
 
+## 🚀 What Happens After Installing This Package?
+- The `php artisan make:model` command has undergone a luxurious transformation, featuring an added repository pattern.
+  - **Command Excellence:**
+    ```bash
+    php artisan make:model ExampleModel --m
+    ```
+    ```bash
+    php artisan make:model ExampleModel1 ExampleModel2 ExampleModel3 --m
+    ```
+    Enjoy the ability to create a single model or multiple models at once, complete with migration/migrations. The system gracefully prompts you, inquiring if you wish to create a repository alongside the model.
 
-## What happened after installing this package?
-- The php artisan make:model command has been customized, with a new repository pattern added.
-  **How is the command now?**
-  ```
-  php artisan make:model ExampleModal --m
-  ```
-  ```
-  php artisan make:model ExampleModal1 ExampleModal2 ExampleModal3 --m
-  ```
-  Now you can create a single model or multiple models at once with migration/migrations. when you will run this command on the terminal, The system ask you, are you want to create repository with the model.
-
-- A new command has been registered.
-  ```
+- Behold, a new command emerges:
+  ```bash
   php artisan auth:generate
   ```
-  You can create the authentication system in your application with the newly registered command. When you run this command on the terminal. The system will ask you, Will you create an authentication for the web or API? After that, If you say web, It will generate web authentication. If you say API, It will ask you to know. Do you create authentication with Passport or Sanctum then the system will be created as per your wish.
+  Elevate your application's authentication system with this regal command. When invoked, the terminal becomes a realm of choices, asking whether you desire authentication for the web or API. Opt for web, and witness the creation of a web authentication marvel. Choose API, and the terminal further inquires if you prefer authentication with Passport or Sanctum. Your wishes shape the system accordingly.
   
-  You can also run the command this way if you want
-  ```
+  Alternatively, embark on this journey with personalized commands:
+  ```bash
   php artisan auth:generate web
+  ```
   or
+  ```bash
   php artisan auth:generate api --type=passport/sanctum
   ```
   
-  
+Embark on your Laravel journey with the elegance and sophistication of Laravel Boiler Template! 
+🌟 Add stars, fork the project, and engage with the community. 🚀

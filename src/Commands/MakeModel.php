@@ -54,6 +54,7 @@ class MakeModel extends Command
 
         $this->output->progressStart(count($models));
         foreach($models as $model){
+            $model = ucfirst($model);
             // check is exists models and ignore
             if(!in_array($model, $existsModels)){
                 Model::generate($model);

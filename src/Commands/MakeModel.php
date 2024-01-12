@@ -5,7 +5,7 @@ namespace Abedin\Boiler\Commands;
 use Abedin\Boiler\Lib\Generator\Model;
 use Abedin\Boiler\Lib\Generator\Repository;
 use Illuminate\Console\Command;
-use Str;
+use Illuminate\Support\Str;
 
 class MakeModel extends Command
 {
@@ -78,10 +78,16 @@ class MakeModel extends Command
      * When run the command to create migration simple run this method.
      * @return void
      */
-    protected function createMigration($model): void
+    protected function createMigration($modelName): void
     {
+        // Replace uppercase letters with underscores and lowercase versions
+        $modelName = preg_replace('/([a-z])([A-Z])/', '$1_$2', $modelName);
+
+        // Convert the result to lowercase
+        $modelName = strtolower($modelName);
+        
         // make plurar model name
-        $tableName = Str::plural(strtolower($model));
+        $tableName = Str::plural(strtolower($modelName));
         $migrationName = "create_{$tableName}_table";
 
         $this->call('make:migration', [

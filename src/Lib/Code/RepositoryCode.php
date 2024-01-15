@@ -13,7 +13,6 @@ public static function writeGetAccessTokenMethod(): string
         return [
             'auth_type' => 'Bearer',
             'token' => \$token->accessToken,
-            'expires_at' => \$token->token->expires_at->format('Y-m-d H:i:s'),
         ];
     }";
 }

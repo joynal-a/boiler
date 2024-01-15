@@ -6,7 +6,7 @@ class WriteFile
 {
     
     public static function addNewCode(string $filePath,string $code, array $useClasses = [], $classImport = null): void
-    {
+    { 
         // Open File Line By line
         $fileLines = file($filePath);
         // Remove all empty lines

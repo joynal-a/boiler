@@ -48,8 +48,20 @@ public static function webAuth(bool $isCreteUserRepo)
     return $code;
 }
 
-    public static function apiAuth(bool $isCreteUserRepo)
+    public static function apiAuth(bool $isCreteUserRepo, $whichOne = 'passport')
     {
+        $data = [
+            'old' => ['getAccessToken('], ["\$token = \$user->createToken('user token')->plainTextToken;","'token' => \$token,"], 
+            'new' => ["        \$token = \$user->createToken('user token');\n", "            'token' => \$token->accessToken,\n"]
+        ];
+        if($whichOne == 'sanctum'){
+            $data = [
+                'old' =>["\$token = \$user->createToken('user token');", "'token' => \$token->accessToken,"],
+                'new' => ["        \$token = \$user->createToken('user token')->plainTextToken;\n","            'token' => \$token,\n"]
+            ];
+        }
+        
+        
         $accessToken = "\$this->getAccessToken(\$user)";
         $query = "User::";
         $accessCode = RepositoryCode::writeGetAccessTokenMethod();
@@ -60,7 +72,7 @@ public static function webAuth(bool $isCreteUserRepo)
             $accessCode = null;
 
             $userRepositoryPath = app_path('Repositories/UserRepository.php');
-            ReadFile::ignoreOrWrite($userRepositoryPath, ['getAccessToken('], RepositoryCode::writeGetAccessTokenMethod());
+            ReadFile::ignoreOrWrite($userRepositoryPath, ['getAccessToken('], RepositoryCode::writeGetAccessTokenMethod(), $data);
         }
 
         $code = self::writeSigninMethod($accessToken);

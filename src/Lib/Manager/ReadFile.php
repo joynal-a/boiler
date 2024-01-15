@@ -5,7 +5,7 @@ namespace Abedin\Boiler\Lib\Manager;
 class ReadFile 
 {
 
-    public static function ignoreOrWrite($filePath, array $method, string $code ,):void
+    public static function ignoreOrWrite($filePath, array $method, string $code, array $modifyAbleDatas = []):void
     {
         if(file_exists($filePath)){
             $fileLines = file($filePath);
@@ -15,6 +15,16 @@ class ReadFile
 
             if(empty($existsJsonMethod)){
                 WriteFile::addNewCode($filePath, $code);
+            }
+
+            if(!empty($modifyAbleDatas)){
+                foreach($modifyAbleDatas['old'] as $key => $modifyAbleDatas){
+                    $targetLine = self::searchWordToGetLineNo($diffFileLines, $modifyAbleDatas['new'][$key]);
+                    if($targetLine){
+                        $fileLines[$targetLine] = $modifyAbleDatas['new'][$key];
+                    }
+                }
+                file_put_contents($filePath, implode('', $fileLines));
             }
         }
     }

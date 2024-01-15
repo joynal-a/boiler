@@ -50,23 +50,22 @@ public static function webAuth(bool $isCreteUserRepo)
 
     public static function apiAuth(bool $isCreteUserRepo, $whichOne = 'passport')
     {
-        $data = [
-            'old' => ["\$token = \$user->createToken('user token')->plainTextToken;","'token' => \$token,"], 
-            'new' => ["        \$token = \$user->createToken('user token');\n", "            'token' => \$token->accessToken,\n"]
-        ];
-        if($whichOne == 'sanctum'){
-            $data = [
-                'old' =>["\$token = \$user->createToken('user token');", "'token' => \$token->accessToken,"],
-                'new' => ["        \$token = \$user->createToken('user token')->plainTextToken;\n","            'token' => \$token,\n"]
-            ];
-        }
-        
-        
         $accessToken = "\$this->getAccessToken(\$user)";
         $query = "User::";
         $accessCode = RepositoryCode::writeGetAccessTokenMethod();
 
         if($isCreteUserRepo){
+            if($whichOne == 'sanctum'){
+                $data = [
+                    'old' =>["\$token = \$user->createToken('user token');", "'token' => \$token->accessToken,"],
+                    'new' => ["        \$token = \$user->createToken('user token')->plainTextToken;\n","            'token' => \$token,\n"]
+                ];
+            }else{
+                $data = [
+                    'old' => ["\$token = \$user->createToken('user token')->plainTextToken;","'token' => \$token,"], 
+                    'new' => ["        \$token = \$user->createToken('user token');\n", "            'token' => \$token->accessToken,\n"]
+                ];
+            }
             $accessToken = "UserRepository::getAccessToken(\$user)";
             $query = "UserRepository::query()->";
             $accessCode = null;

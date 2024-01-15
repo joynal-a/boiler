@@ -18,8 +18,8 @@ class ReadFile
             }
 
             if(!empty($modifyAbleDatas)){
-                foreach($modifyAbleDatas['old'] as $key => $modifyAbleDatas){
-                    $targetLine = self::searchWordToGetLineNo($diffFileLines, $modifyAbleDatas['new'][$key]);
+                foreach($modifyAbleDatas['old'] as $key => $oldData){
+                    $targetLine = self::searchWordToGetLineNo($diffFileLines, $oldData);
                     if($targetLine){
                         $fileLines[$targetLine] = $modifyAbleDatas['new'][$key];
                     }

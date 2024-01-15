@@ -18,6 +18,8 @@ class ReadFile
             }
 
             if(!empty($modifyAbleDatas)){
+                $fileLines = file($filePath);
+                $diffFileLines = array_diff($fileLines, ["\n"]);
                 foreach($modifyAbleDatas['old'] as $key => $oldData){
                     $targetLine = self::searchWordToGetLineNo($diffFileLines, $oldData);
                     if($targetLine){

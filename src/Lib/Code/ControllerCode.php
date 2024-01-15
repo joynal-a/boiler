@@ -51,7 +51,7 @@ public static function webAuth(bool $isCreteUserRepo)
     public static function apiAuth(bool $isCreteUserRepo, $whichOne = 'passport')
     {
         $data = [
-            'old' => ['getAccessToken('], ["\$token = \$user->createToken('user token')->plainTextToken;","'token' => \$token,"], 
+            'old' => ["\$token = \$user->createToken('user token')->plainTextToken;","'token' => \$token,"], 
             'new' => ["        \$token = \$user->createToken('user token');\n", "            'token' => \$token->accessToken,\n"]
         ];
         if($whichOne == 'sanctum'){
